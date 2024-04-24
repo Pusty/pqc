@@ -1,0 +1,13 @@
+[book]
+authors = []
+language = "en"
+multilingual = false
+src = "src"
+title = "Post-Quantum Cryptography"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+curly-quotes = true
+mathjax-support = true
+copy-fonts = true
