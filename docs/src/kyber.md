@@ -36,7 +36,7 @@ The reasoning behind this is that sampling the cbd is significantly faster than 
 
 The main reason for choosing a Gaussian distribution is that only for them a rigorous reduction of LWE to hard lattice problems is known.
 Specifically for the secret \\( s \\) the distribution doesn't matter [as long as it has sufficient entropy](https://eprint.iacr.org/2020/119.pdf).
-The KYBER specifications also argue that for the best known attacks that use the noise, the distribution itself doesn't matter, only the standard deviation and entropy.
+The KYBER specifications also argue that for the best known attacks that use the noise, the error distribution itself doesn't matter, only the standard deviation and entropy.
 
 
 - [StackOverflow - LWE and Distributions](https://crypto.stackexchange.com/questions/107234/lwe-and-distributions)
@@ -51,6 +51,7 @@ The KYBER specifications also argue that for the best known attacks that use the
 
 - [Python Implementation](https://github.com/GiacomoPope/kyber-py/tree/main)
 
+- [Original paper](https://eprint.iacr.org/2017/634.pdf)
 - \\(s\\) and \\(e\\) both are error vectors generated same way (from centered binomial distribution) using \\(\\eta_1\\)
 - Operations on \\(A\\), \\(s\\) \\(e\\) happen in NTT domain [(Number Theoretic Transform)](https://electricdusk.com/ntt.html)
 - \\(pk = (As + e) || seed_A\\)
