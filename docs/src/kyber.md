@@ -2,26 +2,26 @@
 
 Simplified KYBER:
 
-![](kyber.svg)
+{{#include ../svg/kyber/kyber.svg}}
 
 Compression, Encoding and Number Theoretic Transforms (used for efficient multiplication of polynomials modulo \\(q\\) ) are ignored here.
 
-![](kyber-math.svg)
+{{#include ../svg/kyber/kyber-math.svg}}
 
 For each coefficient the noise introduced by \\( e_2 + e^T r - s^T e_1 \\) is smaller than \\( q / 4 \\) so if the coefficient is closer to \\( q / 2 \\) than \\( 0 \\) the decrypted bit is \\( 1 \\) and \\( 0 \\) otherwise.
 
-![](kyber-circle.svg)
+{{#include ../svg/kyber/kyber-circle.svg}}
 
 KYBER as a public-key encryption scheme is IND-CPA-secure for encrypting messages of a fixed length of 32 byte.
 This is also referenced as Kyber.CPAPKE.
 
 Based on this Kyber.CCAKEM (usually just referenced as KYBER) is build as a IND-CCA2-secure KEM using a "slightly tweaked" [Fujisaki–Okamoto](https://link.springer.com/chapter/10.1007/3-540-48405-1_34) transform:
 
-![](kyber-kem-overview.svg)
+{{#include ../svg/kyber/kyber-kem-overview.svg}}
 
 Here is an illustration of Alice and Bob negotiating a shared key with annotation on the design:
 
-![](kyber-kem-annotated.svg)
+{{#include ../svg/kyber/kyber-kem-annotated.svg}}
 
 
 ## Noise Selection
@@ -30,7 +30,7 @@ Kyber uses the centered binomial distribution instead of a discrete Gaussian dis
 
 For e.g. \\( \\eta = 2 \\) it looks like this:
 
-![](kyber-eta2.svg)
+{{#include ../svg/kyber/kyber-eta2.svg}}
 
 The reasoning behind this is that sampling the cbd is significantly faster than a Gaussian distribution and they behave [similar](https://cryptojedi.org/papers/#newhope) enough.
 

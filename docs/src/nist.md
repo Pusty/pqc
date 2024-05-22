@@ -5,7 +5,15 @@ So far 3 rounds of proposal submissions have finished. A [4th round](https://csr
 
 July 5, 2022 [NIST announced](https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms) the first group of winners for standardization from Round 3.
 
-![](nist.svg)
+<style>
+.icon>
+svg>path{
+  stoke: var(--fg);
+  fill: var(--fg);
+}
+</style>
+
+{{#include ../svg/nist/nist.svg}}
 
 In this graphic [SIKE](http://sike.org/) was not included because it has been broken. [("The SIKE teams acknowledges that SIKE and SIDH are insecure and should not be used.")](https://csrc.nist.gov/csrc/media/Projects/post-quantum-cryptography/documents/round-4/submissions/sike-team-note-insecure.pdf)
 Furthermore algorithms of other types/categories submitted to Round 3, but not chosen nor resubmitted in Round 4 were not included.
@@ -54,8 +62,7 @@ Furthermore algorithms of other types/categories submitted to Round 3, but not c
 
 ## Notes to Lattice Based Candidates
 
-
-![](nist-lattice.svg)
+{{#include ../svg/nist/nist-lattice.svg}}
 
 - CRYSTALS:Module Learning with Error
 - NTRU: NTRU Assumption (Reduces to original [NTRUEncrypt](https://www.ntru.org/f/hps98.pdf), based on Shortest Vector Problem), variant reduced to Ring Learning with Error [[1]](https://eprint.iacr.org/2013/004) exists

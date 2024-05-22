@@ -10,9 +10,9 @@ An algorithm solves Decision-LWE for a \\( q \\) and \\( \\chi \\) if, for any \
 
 If \\( q \\) is bound by some polynomial in \\( n \\) then Search-LWE and Decision-LWE [are equivalent](https://arxiv.org/pdf/2401.03703).
 
-An algorithm that solves LWE for a non-negligible fraction of all possible \\( s \\) can be used to efficiently solve all LWE for all \\( s \\). [(Average-case to Worst-case)](https://arxiv.org/pdf/2401.03703)
+An algorithm that solves LWE for a non-negligible fraction of all possible \\( s \\) can be used to efficiently solve LWE for all \\( s \\). [(Average-case to Worst-case)](https://arxiv.org/pdf/2401.03703)
 
-![](lwe-to-gapsvp.svg)
+{{#include ../svg/lwe/lwe-to-gapsvp.svg}}
 
 [Average-case Decision-LWE to Worst-case Search - Shortest Vector Problem.](https://eprint.iacr.org/2008/481.pdf)
 
@@ -20,11 +20,12 @@ An algorithm that solves LWE for a non-negligible fraction of all possible \\( s
 
 ## [Learning With Errors](https://cims.nyu.edu/~regev/papers/lwesurvey.pdf)
 
-![](lwe-lwe.svg)
+{{#include ../svg/lwe/lwe-lwe.svg}}
+
 
 ## [RLWE](https://cims.nyu.edu/~regev/papers/lwesurvey.pdf)
 
-![](lwe-rlwe.svg)
+{{#include ../svg/lwe/lwe-rlwe.svg}}
 
 ## [MLWE (GLWE)](https://eprint.iacr.org/2011/277.pdf)
 
@@ -32,9 +33,7 @@ RLWE is a special case of MLWE / GLWE with \\( k = 1 \\).
 
 The paper introducing MLWE introduced it as General-Learning With Errors and used it for Fully Homomorphic Encryption without Bootstrapping.
 
-
-
-![](lwe-mlwe.svg)
+{{#include ../svg/lwe/lwe-mlwe.svg}}
 
 ## MLWE in Kyber
 
@@ -56,8 +55,7 @@ So \\( v \\) is exactly one sample with the secret \\( r \\), using \\( t \\) as
 
 As adding a constant value \\( m \\) to a uniformly random sample within a Ring is indistinguishable from just a uniformly random sample, \\( v \\) without knowledge of \\( s \\) or \\( r \\) is also indistinguishable from just a uniformly random sample (under the assumed hardness of LWE). 
 
-
-![](lwe-kyber.svg)
+{{#include ../svg/lwe/lwe-kyber.svg}}
 
 From this we know that the public key and the ciphertext both are indistinguishable from uniform random values.
 

@@ -11,3 +11,4 @@ preferred-dark-theme = "navy"
 curly-quotes = true
 mathjax-support = true
 copy-fonts = true
+additional-js = ["src/darkmodefix.js"]
