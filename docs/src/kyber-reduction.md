@@ -1,4 +1,4 @@
-# [KYBER Security Reduction to MLWE](https://eprint.iacr.org/2017/634.pdf)
+# [MLWE to KYBER Security Reduction](https://eprint.iacr.org/2017/634.pdf)
 
 This page shows a reduction of MLWE (with \\( k + 1 \\) samples) to Kyber.
 
