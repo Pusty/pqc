@@ -58,3 +58,5 @@ The KYBER specifications also argue that for the best known attacks that use the
 - \\(sk = s\\)
 - For encryption: \\(r\\) is an error vector samples with \\(\\eta_1\\), \\(e_1\\) with \\(\\eta_2\\), \\(e_2\\) is individually sampled like the vectors using \\(\\eta_2\\).
 - Similar to [LPR encryption system](https://eprint.iacr.org/2012/230.pdf) which operates over Ring LWE
+
+- Kyber.CPAPKE is malleable (Dec(Enc(a) + Enc(b)) = a xor b)
