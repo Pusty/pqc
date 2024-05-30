@@ -8,3 +8,4 @@
     - [Baby Kyber Demo](babykyber.md)
     - [Module Learning With Errors](mlwe.md)
     - [Security Reduction](kyber-reduction.md)
+- [BGV](bgv.md)
