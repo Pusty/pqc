@@ -7,7 +7,19 @@ A broad overview of a GLWE-variant of the BGV scheme (following the GLWE-Based E
 Notable is that the key generation, encryption and decryption can be expressed very similar to Kyper.CPAPKE.
 Differences are that for Kyber \\( N = 2 \\) (which does not fullfil the requirement of the BGV scheme) and \\( p = 2 \\), also the encoding and decoding of the plaintext in relation to the errors differs between the schemes.
 
+For the decryption to work the noise and plaintext space are not allowed to overlap which happens when the noise overflows over \\( q \\).
+
+From a bit perspective this graphic (adapted from [here](https://www.inferati.com/blog/fhe-schemes-bgv)) demonstrates the layout for the plaintext encoding chosen here:
+
+{{#include ../svg/bgv/bgv-noise-budget.svg}}
+
+In this scheme the noise grows additively with each addition operation (as shown below) and multiplicative with each multiplication (and so exponential with each layer).
+
+{{#include ../svg/bgv/bgv-addition.svg}}
+
+
 The actual BGV schemes without Bootstrapping additionally propose methods for reducing the noise like Key Switching and Modulus Switching.
+
 
 ## Further Links
 

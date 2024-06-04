@@ -23,6 +23,12 @@ Here is an illustration of Alice and Bob negotiating a shared key with annotatio
 
 {{#include ../svg/kyber/kyber-kem-annotated.svg}}
 
+In comparison here is an illustration of unmodified the Fujisaki–Okamoto transform used as a KEM:
+
+{{#include ../svg/kyber/fo.svg}}
+
+
+
 
 ## Noise Selection
 
