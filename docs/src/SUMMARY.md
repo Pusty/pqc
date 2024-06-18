@@ -9,3 +9,4 @@
     - [Module Learning With Errors](mlwe.md)
     - [Security Reduction](kyber-reduction.md)
 - [BGV](bgv.md)
+- [Lecture Draft](lecture.md)

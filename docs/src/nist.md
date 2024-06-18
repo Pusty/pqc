@@ -5,14 +5,6 @@ So far 3 rounds of proposal submissions have finished. A [4th round](https://csr
 
 July 5, 2022 [NIST announced](https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms) the first group of winners for standardization from Round 3.
 
-<style>
-.icon>
-svg>path{
-  stoke: var(--fg);
-  fill: var(--fg);
-}
-</style>
-
 {{#include ../svg/nist/nist.svg}}
 
 In this graphic [SIKE](http://sike.org/) was not included because it has been broken. [("The SIKE teams acknowledges that SIKE and SIDH are insecure and should not be used.")](https://csrc.nist.gov/csrc/media/Projects/post-quantum-cryptography/documents/round-4/submissions/sike-team-note-insecure.pdf)
