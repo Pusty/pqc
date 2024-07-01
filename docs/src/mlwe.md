@@ -22,6 +22,27 @@ An algorithm that solves LWE for a non-negligible fraction of all possible \\( s
 
 {{#include ../svg/lwe/lwe-lwe.svg}}
 
+## LWE as a Lattice Problem
+
+Consider for \\( n \\) samples of \\( A_{s, \\chi} \\) we have have 
+
+\\[ A =  [ a_0, ... , a_{n-1} ]^T  \\in \\mathbb{Z}_q^{n \\times n} \\]
+
+which can express a full-rank lattice with the basis \\( A \\):
+ 
+\\[ \\mathcal{L}(A) = \\{ Az \\mod q : z \\in \\mathbb{Z}^n_q \\} \\]
+
+with this we have:
+
+\\[ b_i = e_i + \\sum_{j=0}^n A_{i,j} \\cdot s_j \\]
+
+So \\( b \\) is a point on the lattice \\( \\mathcal{L}(A) \\) with an error applied on each coordinate.
+
+If we somehow find the point \\( A s \\) (which is \\( b \\) without noise and the closest lattice point from \\( b \\)) we can recover \\( s \\) (as it is the coefficient vector of the lattice point) which would break LWE.
+
+{{#include ../svg/lwe/lattice.svg}}
+
+Problems that tackle this are the [Closest Vector Problem](https://en.wikipedia.org/wiki/Lattice_problem#Closest_vector_problem_(CVP)) and the Bounded Distance Decoding problem.
 
 ## [RLWE](https://cims.nyu.edu/~regev/papers/lwesurvey.pdf)
 

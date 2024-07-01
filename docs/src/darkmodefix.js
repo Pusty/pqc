@@ -4,22 +4,39 @@
 document.querySelectorAll('path[fill="#909090"]').forEach(el => {
  el.setAttribute('fill', '');
  el.setAttribute('style', 'fill: var(--sidebar-non-existant);');
+ el.style.fill = 'var(--sidebar-non-existant)';
 });
 
 document.querySelectorAll('path[stroke="#909090"]').forEach(el => {
  el.setAttribute('stroke', '')
- el.setAttribute('style', 'stroke: var(--sidebar-non-existant);');
+ el.style.stroke = 'var(--sidebar-non-existant)';
 });
 
 // black
 document.querySelectorAll('path[fill="#000000"]').forEach(el => {
  el.setAttribute('fill', '');
- el.setAttribute('style', 'fill: var(--fg);');
+ el.style.fill = 'var(--fg)';
 });
 
 document.querySelectorAll('path[stroke="#000000"]').forEach(el => {
  el.setAttribute('stroke', '')
- el.setAttribute('style', 'stroke: var(--fg);');
+ el.style.stroke = 'var(--fg)';
+});
+
+document.querySelectorAll('rect[fill="#000000"]').forEach(el => {
+ el.setAttribute('fill', '');
+ el.style.fill = 'var(--fg)';
+});
+
+document.querySelectorAll('rect[stroke="#000000"]').forEach(el => {
+ el.setAttribute('stroke', '');
+ el.style.stroke = 'var(--fg)';
+});
+
+document.querySelectorAll('div[style]').forEach(el => {
+ if(el.style["color"] == "") return;
+ if(el.style["color"] != "rgb(0, 0, 0)" && el.style["color"] != "rgb(0, 0, 0, 255)" && el.style["color"] != "#000000") return;
+ el.style.color='var(--fg)';
 });
 
 

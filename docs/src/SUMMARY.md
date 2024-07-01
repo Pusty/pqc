@@ -7,6 +7,7 @@
 - [CRYSTALS Kyber](kyber.md)
     - [Baby Kyber Demo](babykyber.md)
     - [Module Learning With Errors](mlwe.md)
+    - [1-bit LWE](1bit.md)
     - [Security Reduction](kyber-reduction.md)
 - [BGV](bgv.md)
 - [Lecture Draft](lecture.md)
