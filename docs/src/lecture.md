@@ -1,14 +1,10 @@
 # Lecture Draft
 
 - PQC Intro
-- Algebraic Lattice Basics
 - LWE (decision vs. search, average to worst case)
+- 1-bit LWE Encryption
+- 1-bit LWE Reduction
 - LWE and Lattices (BDD sketch)
-
-- Variants of LWE  (RLWE, MLWE)
-
-- Kyber PKE
-- Kyber KEM
 
 
 ## Post-Quantum Crypto
@@ -39,16 +35,6 @@ In general current approaches of Post-Quantum Cryptograhpy are:
 
 Most of the schemes currently in the process of standardization are Lattice based.
 
-## Algebraic Lattice Intro
-
-A Lattice is a periodic grid in \\( \\mathbb{Z}^m \\).
-
-So with a basis \\( B \\) out of \\( m \\) linearly independent vectors  \\( b_1, ..., b_m \\) out of \\( \\mathbb{Z}^{\ge m} \\).
-
-\\[ \\mathcal{L}(B) = \\{  \\sum^n_{i=1} x_i b_i : x_i \\in \\mathbb{Z} \\} \\]
-
-// Explain SVP and that it is hard
-
 ## LWE
 
 The LWE (Learning With Errors) problem and variants are instantiated with a prime \\( q \\) and an error distribution \\( \\chi \\) and provide the LWE sample distribution \\( A_{s, \\chi} \\) for a fixed secret \\( s \\) .
@@ -63,9 +49,36 @@ If \\( q \\) is bound by some polynomial in \\( n \\) then Search-LWE and Decisi
 An algorithm that solves LWE for a non-negligible fraction of all possible \\( s \\) can be used to efficiently solve LWE for all \\( s \\). [(Average-case to Worst-case)](https://arxiv.org/pdf/2401.03703)
 
 
-## LWE and Lattices
+# [1-bit "Kyber-like" LWE Encryption Scheme](https://eprint.iacr.org/2010/613.pdf)
 
-// LWE to BDD sketch here and roughly how it relates to SVP
+A 1-bit cryptosystem that looks more similar to Kyber and does not require statistical distances in the security reduction:
+
+{{#include ../svg/1bit/lp.svg}}
+
+The reduction itself is [the same as for Kyber](kyber-reduction.md) except that we are reducing to LWE instead of MLWE (and not working in a polynomial ring).
+
+## LWE as a Lattice Problem
+
+Consider for \\( n \\) samples of \\( A_{s, \\chi} \\) we have have 
+
+\\[ A =  [ a_0, ... , a_{n-1} ]^T  \\in \\mathbb{Z}_q^{n \\times n} \\]
+
+which can express a full-rank lattice with the basis \\( A \\):
+ 
+\\[ \\mathcal{L}(A) = \\{ Az \\mod q : z \\in \\mathbb{Z}^n_q \\} \\]
+
+with this we have:
+
+\\[ b_i = e_i + \\sum_{j=0}^n A_{i,j} \\cdot s_j \\]
+
+So \\( b \\) is a point on the lattice \\( \\mathcal{L}(A) \\) with an error applied on each coordinate.
+
+If we somehow find the point \\( A s \\) (which is \\( b \\) without noise and the closest lattice point from \\( b \\)) we can recover \\( s \\) (as it is the coefficient vector of the lattice point) which would break LWE.
+
+{{#include ../svg/lwe/lattice.svg}}
+
+Problems that tackle this are the [Closest Vector Problem](https://en.wikipedia.org/wiki/Lattice_problem#Closest_vector_problem_(CVP)) and the Bounded Distance Decoding problem.
+
 
 ## Variants of LWE
 
@@ -79,34 +92,10 @@ The paper introducing MLWE introduced it as General-Learning With Errors and use
 
 {{#include ../svg/lwe/lwe-mlwe.svg}}
 
-// Explain that previous reductions to general lattices doesn't work when we work in a polynomial ring and is only true for a subset of lattices with a specific structure
+The previous reductions for general lattices only work partially when we work in a polynomial ring and are only true for a subset of lattices with a specific structure.
+It is not known whether this subset of lattices is generalizable to lattices or if this subset opens up the possibility of specialized attacks.
 
-## Kyber PKE
 
-Simplified KYBER:
-
-{{#include ../svg/kyber/kyber.svg}}
-
-// Explain why this works (graphics in kyber.md)
-
-// Explain how this relates to MLWE / where hardness comes from
-
-KYBER as MLWE instances:
-
-{{#include ../svg/lwe/lwe-kyber.svg}}
-
-// security reducation on KYBER as MLWE
-
-## Kyber KEM / ML-KEM
-
-{{#include ../svg/kyber/kyber-kem-overview.svg}}
-
-with annotation:
-
-{{#include ../svg/kyber/kyber-kem-annotated.svg}}
-
-// explain difference between kyber-kem-fo and "normal" fo
-
-## References / Structure based on
+## References for Structure
 
 - [Chris Peikert Lecture Video](https://www.youtube.com/watch?v=dbP2cgTsrRo)
