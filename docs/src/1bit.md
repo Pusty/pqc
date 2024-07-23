@@ -1,10 +1,10 @@
 # [1-bit LWE Encryption Scheme](https://eprint.iacr.org/2012/090.pdf)
 
-A very basic crypto system based on LWE:
+A very basic cryptosystem  based on LWE:
 
 {{#include ../svg/1bit/regev.svg}}
 
-Note that the security proof requires a statistical argument (in particular the Left over Hash Lemma). 
+Note that the security proof requires a statistical argument (in particular the [Leftover Hash Lemma](https://en.wikipedia.org/wiki/Leftover_hash_lemma)). 
 
 # [1-bit "Kyber-like" LWE Encryption Scheme](https://eprint.iacr.org/2010/613.pdf)
 

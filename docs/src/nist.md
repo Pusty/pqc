@@ -1,13 +1,13 @@
 # NIST Post-Quantum Cryptography
 
-Standardization of Post-Quantum Cryptography by NIST started [2016](https://www.nist.gov/blogs/taking-measure/future-now-spreading-word-about-post-quantum-cryptography) by announcing the respective challenge.
-So far 3 rounds of proposal submissions have finished. A [4th round](https://csrc.nist.gov/Projects/post-quantum-cryptography/round-4-submissions) started July 5, 2022.
+The standardization of Post-Quantum Cryptography by NIST started in [2016](https://www.nist.gov/blogs/taking-measure/future-now-spreading-word-about-post-quantum-cryptography) by announcing the respective challenge.
+So far 3 rounds of proposal submissions have finished. A [4th round](https://csrc.nist.gov/Projects/post-quantum-cryptography/round-4-submissions) started on July 5, 2022.
 
-July 5, 2022 [NIST announced](https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms) the first group of winners for standardization from Round 3.
+On July 5, 2022, [NIST announced](https://www.nist.gov/news-events/news/2022/07/nist-announces-first-four-quantum-resistant-cryptographic-algorithms) the first group of winners for standardization from Round 3.
 
 {{#include ../svg/nist/nist.svg}}
 
-In this graphic [SIKE](http://sike.org/) was not included because it has been broken. [("The SIKE teams acknowledges that SIKE and SIDH are insecure and should not be used.")](https://csrc.nist.gov/csrc/media/Projects/post-quantum-cryptography/documents/round-4/submissions/sike-team-note-insecure.pdf)
+In this graphic [SIKE](http://sike.org/) was not included because it has been broken. [("The SIKE team acknowledges that SIKE and SIDH are insecure and should not be used.")](https://csrc.nist.gov/csrc/media/Projects/post-quantum-cryptography/documents/round-4/submissions/sike-team-note-insecure.pdf)
 Furthermore algorithms of other types/categories submitted to Round 3, but not chosen nor resubmitted in Round 4 were not included.
 
 ## [Selected Algorithms 2022](https://csrc.nist.gov/Projects/post-quantum-cryptography/selected-algorithms-2022)
@@ -52,11 +52,11 @@ Furthermore algorithms of other types/categories submitted to Round 3, but not c
 - [SPHINCS+](https://sphincs.org/)
 
 
-## Notes to Lattice Based Candidates
+## Notes to Lattice-Based Candidates
 
 {{#include ../svg/nist/nist-lattice.svg}}
 
-- CRYSTALS:Module Learning with Error
+- CRYSTALS: Module Learning with Error
 - NTRU: NTRU Assumption (Reduces to original [NTRUEncrypt](https://www.ntru.org/f/hps98.pdf), based on Shortest Vector Problem), variant reduced to Ring Learning with Error [[1]](https://eprint.iacr.org/2013/004) exists
 - SABER: Module Learning with Error
 - FrodoKEM: Decision Learning With Error (very detailed reduction)
@@ -65,7 +65,7 @@ Furthermore algorithms of other types/categories submitted to Round 3, but not c
 
 "Essential linear-time reduction from RLWE to MLWE" [[1]](https://link.springer.com/chapter/10.1007/978-3-030-36030-6_1)
 
-## Notes on Code Based Candidates
+## Notes on Code-Based Candidates
 
 - Classic McEliece: binary Goppa codes / decoding general linear code
 - BIKE: Quasi-Cyclic Moderate Density Parity-Check (QC-MDPC) codes 

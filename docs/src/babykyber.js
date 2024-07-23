@@ -406,7 +406,7 @@ function process() {
     div.appendChild(document.createTextNode("$$ m_{noisy} = v - s^T u = e^T r + e_2 + m - s^T e_1 = "+polyprint(mn)+"$$"));
     div.appendChild(document.createTextNode("$$ noise = e^T r + e_2 - s^T e_1 = "+polyprint(noise)+"$$"));
     div.appendChild(document.createTextNode("$$ v_{dec} = decode(m_{noisy}) = "+dv+"$$"));
-    div.appendChild(document.createTextNode("$$ \\delta = "+p2_cyclotomic_error_probability(q)*100+" \\% $$"));
+    div.appendChild(document.createTextNode("$$ \\delta \\text{ (decode error chance)} = "+p2_cyclotomic_error_probability(q)*100+" \\% $$"));
 
 
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]);

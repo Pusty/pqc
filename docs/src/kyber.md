@@ -38,7 +38,7 @@ For e.g. \\( \\eta = 2 \\) it looks like this:
 
 {{#include ../svg/kyber/kyber-eta2.svg}}
 
-The reasoning behind this is that sampling the cbd is significantly faster than a Gaussian distribution and they behave [similar](https://cryptojedi.org/papers/#newhope) enough.
+The reasoning behind this is that sampling the cbd is significantly faster than a Gaussian distribution and they behave [similarly](https://cryptojedi.org/papers/#newhope) enough.
 
 The main reason for choosing a Gaussian distribution is that only for them a rigorous reduction of LWE to hard lattice problems is known.
 Specifically for the secret \\( s \\) the distribution doesn't matter [as long as it has sufficient entropy](https://eprint.iacr.org/2020/119.pdf).

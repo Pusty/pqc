@@ -26,7 +26,7 @@ Reducing MLWE to Kyber requires a case distinction:
 Using both cases we get an advantage against MLWE with \\( k+1 \\) samples of at least \\(  \\text{Adv}^{\\text{Kyber}}(A) \\).
 
 
-## Case 1: Using structure of public key
+## Case 1: Using the structure of the public key
 
 If the construction of \\( t \\) is relevant we observe the following reduction:
 
@@ -37,7 +37,7 @@ The \\( k \\) samples of MLWE \\( _{k, \\eta} \\) build a public key for a rando
 We know that if we can solve MLWE for a non-negligible fraction of \\( s \\) we can solve MLWE for all \\( s \\), so fixing the set to the subset is without loss of generality on MLWE.
 
 In \\( \\mathcal{C}(0) \\), the behavior of \\( B \\) is exactly like in the Kyber Semantic Security situation.
-In \\( \\mathcal{C}(1) \\), \\( t \\) is uniformly random chosen and has no structure.
+In \\( \\mathcal{C}(1) \\), \\( t \\) is uniformly randomly chosen and has no structure.
 
 If \\( A \\) uses the structure of \\( t \\) against Kyber then this means that \\( A \\) can distinguish between a MLWE sample and a uniformly random sample (and as such can be used as an adversary against the MLWE decision problem).
 
@@ -46,11 +46,11 @@ If \\( A \\) uses the structure of \\( t \\) against Kyber then this means that 
 \\[ = | (\\text{Adv}^{\\text{Kyber}}(A) + 1/2) - (\\text{Adv}^{\\text{Kyber}}(A) - \\mu + 1/2) | \\]
 \\[ = \\mu \\]
 
-\\( \\text{Adv}^{\\text{Kyber}}(A) - \\mu \\) here expresses how the advantage of \\( A \\) behaves when there is no structure in \\( t \\) and it is actually uniformly random chosen.
+\\( \\text{Adv}^{\\text{Kyber}}(A) - \\mu \\) here expresses how the advantage of \\( A \\) behaves when there is no structure in \\( t \\) and it is actually uniformly randomly chosen.
 This puts \\( \\mu \\) itself in the range of \\( 0 \\) (\\(A \\) does not depend on the pseudo-randomness of \\(t \\) at all) to \\( \text{Adv}^{\\text{Kyber}}(A) \\) ( \\(A \\) fully depends on the structure of \\( t \\)).
 
 
-## Case 2: Public key as uniformly random samples
+## Case 2: The Public key as uniformly random samples
 
 If the construction of \\( t \\) is not relevant in \\( A \\) and it is treated like a uniformly random choosen value, we look at the following reduction:
 

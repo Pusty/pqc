@@ -32,7 +32,7 @@ which can express a full-rank lattice with the basis \\( A \\):
  
 \\[ \\mathcal{L}(A) = \\{ Az \\mod q : z \\in \\mathbb{Z}^n_q \\} \\]
 
-with this we have:
+with this, we have:
 
 \\[ b_i = e_i + \\sum_{j=0}^n A_{i,j} \\cdot s_j \\]
 
@@ -68,7 +68,7 @@ The key generation of Kyber is exactly like MLWE for \\( k \\) samples with the 
 
 Now in the encryption we are first generating the randomizer polynomial \\( r \\) which acts as a secret for LWE sampling during the encryption.
 
-\\( u \\) consists of \\( k \\) samples with the secret \\( r \\) and uses  \\( A^T \\) as the uniformly random \\( a \\), which is obviously also uniformly random.
+\\( u \\) consists of \\( k \\) samples with the secret \\( r \\) and uses  \\( A^T \\) as the uniformly random \\( a \\), which is also uniformly random.
 
 Because deciding if \\( t \\) is uniformly random or not is hard without knowledge of \\( s \\) it is possible to treat \\( t \\) like a uniformly random value for computing \\( v \\).
 

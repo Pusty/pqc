@@ -9,9 +9,9 @@
 
 ## Post-Quantum Crypto
 
-Current Public-Key Cryptography (RSA, Elliptic-curve cryptography) have efficient attacks against them by using Shor's algorithm on (large) Quantum Computers.
+Current Public-Key Cryptography (RSA, Elliptic-curve cryptography) has efficient attacks against them by using Shor's algorithm on (large) Quantum Computers.
 
-While these large Quantum-Computers do not exist right now (and may not for a long time) transitioning to new algorithm historically takes a long time so we are slowly starting now.
+While these large Quantum-Computers do not exist right now (and may not for a long time) transitioning to a new algorithm historically takes a long time so we are slowly starting now.
 
 Also:
 - Harvest Now, Decrypt Later
@@ -21,11 +21,11 @@ In 2016 NIST started the Standardization process to find good candidates for Asy
 
 This in particular means Cryptography that can be run on (current) classical computers while being secure against (future) quantum attacks.
 
-In 2022 announced the first group of winners that are now in the process of standartization.
+In 2022 NIST announced the first group of winners that are now in the process of standardization.
 
 {{#include ../svg/nist/nist.svg}}
 
-In general current approaches of Post-Quantum Cryptograhpy are: 
+In general current approaches to Post-Quantum Cryptography are: 
 
 - Lattice-based
 - Isongeny-based
@@ -33,7 +33,7 @@ In general current approaches of Post-Quantum Cryptograhpy are:
 - Hash-based
 - Multivariant-based
 
-Most of the schemes currently in the process of standardization are Lattice based.
+Most of the schemes currently in the process of standardization are Lattice-based.
 
 ## LWE
 
