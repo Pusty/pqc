@@ -57,6 +57,17 @@ A 1-bit cryptosystem that looks more similar to Kyber and does not require stati
 
 The reduction itself is [the same as for Kyber](kyber-reduction.md) except that we are reducing to LWE instead of MLWE (and not working in a polynomial ring).
 
+## LWE to 1-bit "Kyber-like" LWE Encryption Scheme
+
+The idea here is that assuming we have an oracle for the 1-bit Scheme, it either makes some use of the structure of the public key or doesn't.
+
+If it does use the public key structure we can use the oracle to distinguish LWE-samples from uniformly random values by observing that the oracle only works for the actual LWE-samples.
+If it doesn't use the public key structure it doesn't for an oracle whether the public key is uniformly random or not.
+By replacing it with a uniform random value we can build a wrapper directly.
+
+The details of this are [exactly the same as for Kyber](kyber-reduction) just that elements in the 1-bit scheme are in \\( \\mathbb{Z}_q^n \\) and we are reducing to LWE instead of MLWE.
+
+
 ## LWE as a Lattice Problem
 
 Consider for \\( n \\) samples of \\( A_{s, \\chi} \\) we have have 
@@ -82,11 +93,13 @@ Problems that tackle this are the [Closest Vector Problem](https://en.wikipedia.
 
 ## Variants of LWE
 
-LWE in a Polynomial Ring <reason why this makes it much more efficient for cryptographic schemes>:
+LWE in a Polynomial Ring (because it is significantly more computationally efficient):
 
 {{#include ../svg/lwe/lwe-rlwe.svg}}
 
 RLWE is a special case of MLWE / GLWE with \\( k = 1 \\).
+
+NTRU, NTRU Prime and FALCON are based on RLWE.
 
 The paper introducing MLWE introduced it as General-Learning With Errors and used it for Fully Homomorphic Encryption without Bootstrapping.
 
@@ -95,6 +108,7 @@ The paper introducing MLWE introduced it as General-Learning With Errors and use
 The previous reductions for general lattices only work partially when we work in a polynomial ring and are only true for a subset of lattices with a specific structure.
 It is not known whether this subset of lattices is generalizable to lattices or if this subset opens up the possibility of specialized attacks.
 
+The CRYSTALS suite and SABER are based on MLWE.
 
 ## References for Structure
 

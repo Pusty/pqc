@@ -16,16 +16,18 @@ During the research, I mostly used this page as an assistance during presentatio
 ## Literature
 
 
-- [CRYSTALS-Kyber - Round 3 Specifications](https://pq-crystals.org/kyber/data/kyber-specification-round3-20210804.pdf)
-- [CRYSTALS - Kyber: a CCA-secure module-lattice-based KEM](https://eprint.iacr.org/2017/634.pdf) 
-- [Worst-Case to Average-Case Reductions for Module Lattices](https://eprint.iacr.org/2012/090.pdf)
-- [On Lattices, Learning with Errors, Random Linear Codes, and Cryptography](https://arxiv.org/pdf/2401.03703)
-- [Public-Key Cryptosystems from the Worst-Case Shortest Vector Problem](https://eprint.iacr.org/2008/481.pdf)
-- [The Learning with Errors Problem](https://cims.nyu.edu/~regev/papers/lwesurvey.pdf)
-- [Fully Homomorphic Encryption without Bootstrapping](https://eprint.iacr.org/2011/277.pdf)
+- [J. Bos et al - 2017 ] [CRYSTALS - Kyber: a CCA-secure module-lattice-based KEM](https://eprint.iacr.org/2017/634.pdf) 
+- [A. Langlois, D. Stehlé - 2012] [Worst-Case to Average-Case Reductions for Module Lattices](https://eprint.iacr.org/2012/090.pdf)
+- [O. Regev - 2005] [On Lattices, Learning with Errors, Random Linear Codes, and Cryptography](https://arxiv.org/pdf/2401.03703)
+- [C. Peikert - 2008] [Public-Key Cryptosystems from the Worst-Case Shortest Vector Problem](https://eprint.iacr.org/2008/481.pdf)
+- [O. Regev - 2010] [The Learning with Errors Problem](https://cims.nyu.edu/~regev/papers/lwesurvey.pdf)
+- [Z. Brakerski, C. Gentry, and V. Vaikuntanathan - 2011] [Fully Homomorphic Encryption without Bootstrapping](https://eprint.iacr.org/2011/277.pdf)
+- [R. Lindner, C. Peikert - 2010] [Better Key Sizes (and Attacks) for LWE-Based Encryption](https://eprint.iacr.org/2010/613.pdf)
+- [C. Peikert - 2014] [Lattice Cryptography for the Internet](https://eprint.iacr.org/2014/070.pdf)
 
 ## Links
 
+- [CRYSTALS-Kyber - Round 3 Specifications](https://pq-crystals.org/kyber/data/kyber-specification-round3-20210804.pdf)
 - [NIST Post-Quantum Cryptography Project Size](https://csrc.nist.gov/projects/post-quantum-cryptography)
 - [BSI Post-Quantum Cryptography Page](https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Quantentechnologien-und-Post-Quanten-Kryptografie/Post-Quanten-Kryptografie/post-quanten-kryptografie_node.html)
 - [CRYSTALS Suite Website](https://pq-crystals.org/index.shtml)

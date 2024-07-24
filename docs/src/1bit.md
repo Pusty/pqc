@@ -12,4 +12,6 @@ A cryptosystem that looks more similar to Kyber and does not require statistical
 
 {{#include ../svg/1bit/lp.svg}}
 
+(From [Lattice Cryptography for the Internet](https://eprint.iacr.org/2014/070.pdf) )
+
 The reduction itself is [the same as for Kyber](kyber-reduction.md) except that we are reducing to LWE instead of MLWE.
