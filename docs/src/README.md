@@ -33,4 +33,5 @@ During the research, I mostly used this page as an assistance during presentatio
 - [CRYSTALS Suite Website](https://pq-crystals.org/index.shtml)
 - [FIPS 203 Draft: CRYSTALS Kyber / ML-KEM](https://csrc.nist.gov/pubs/fips/203/ipd)
 - [Kyber - How does it work? (Baby Kyber)](https://cryptopedia.dev/posts/kyber/)
+- [Lattices - CSE 599S - Winter 2023 Script](https://sites.math.washington.edu/~rothvoss/599-winter-2023/lattices.pdf)
 - [Lecture on Post-Quantum Cryptography - Chris Peikert - 3/6/2022](https://www.youtube.com/watch?v=dbP2cgTsrRo)
