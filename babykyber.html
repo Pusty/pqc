@@ -1,0 +1,652 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Baby Kyber Demo - Post-Quantum Cryptography</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">README</a></li><li class="chapter-item expanded "><a href="nist.html"><strong aria-hidden="true">1.</strong> NIST Post-Quantum Cryptography Standardization</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="nist-2022.html"><strong aria-hidden="true">1.1.</strong> Accepted Algorithms 2022</a></li></ol></li><li class="chapter-item expanded "><a href="kyber.html"><strong aria-hidden="true">2.</strong> CRYSTALS Kyber</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="babykyber.html" class="active"><strong aria-hidden="true">2.1.</strong> Baby Kyber Demo</a></li><li class="chapter-item expanded "><a href="mlwe.html"><strong aria-hidden="true">2.2.</strong> Module Learning With Errors</a></li><li class="chapter-item expanded "><a href="1bit.html"><strong aria-hidden="true">2.3.</strong> 1-bit LWE</a></li><li class="chapter-item expanded "><a href="kyber-reduction.html"><strong aria-hidden="true">2.4.</strong> Security Reduction</a></li></ol></li><li class="chapter-item expanded "><a href="bgv.html"><strong aria-hidden="true">3.</strong> BGV</a></li><li class="chapter-item expanded "><a href="lecture.html"><strong aria-hidden="true">4.</strong> Lecture Draft</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Post-Quantum Cryptography</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="baby-kyber"><a class="header" href="#baby-kyber"><a href="https://cryptopedia.dev/posts/kyber/">Baby Kyber</a></a></h1>
+<p>x: <input type="number" id="x" name="x" value="1">
+q: <input type="number" id="q" name="q" value="47">
+<button type="button" onclick="process()">Encrypt</button>
+<br></p>
+<hr>
+<div id="contentHere" style="overflow-x: scroll">
+</div>
+<script>
+// https://cryptopedia.dev/posts/kyber/
+
+// Mod in Z/nZ
+function mod(n, m) {
+  return ((n % m) + m) % m;
+};
+
+
+function abs(n) {
+    return n < 0n ? -n : n;
+}
+
+function polymul(a, b, m) {
+    var len_a = Number(degree(a))+1;
+    var len_b = Number(degree(b))+1;
+    
+    if(len_a == 0 || len_b == 0) {
+        return [];
+    }
+    
+    var res = Array(len_a+len_b-1).fill(0n);
+    for(var i=0;i<len_a;i++) {
+       for(var j=0;j<len_b;j++) { 
+        res[(i+j)] = mod(res[i+j] + (a[i]*b[j]), m);
+       }
+    }
+    
+    while (res.indexOf(0) === 0n) { // remove leading 0s
+        res.shift()
+    }
+    return res;
+}
+
+function polyadd(a, b, m) {
+    var len_a = Number(degree(a))+1;
+    var len_b = Number(degree(b))+1;
+
+    var res = Array(Math.max(len_a,len_b)).fill(0n);
+    for(var i=0;i<len_a;i++) {
+        res[i] = mod(a[i], m);
+    }
+    for(var i=0;i<len_b;i++) {
+        res[i] = mod(res[i] + b[i], m);
+    }
+    return res;
+}
+
+function polysub(a, b, m) {
+    var len_a = Number(degree(a))+1;
+    var len_b = Number(degree(b))+1;
+    
+    var res = Array(Math.max(len_a,len_b)).fill(0n);
+    for(var i=0;i<len_a;i++) {
+        res[i] = mod(a[i], m);
+    }
+    for(var i=0;i<len_b;i++) {
+        res[i] = mod(res[i] - b[i], m);
+    }
+    return res;
+}
+
+function degree(poly) {
+    if(poly.length == 0) { return -1n; }
+    if(poly[poly.length-1] !== 0n) { return BigInt(poly.length-1); }
+    for(var i=poly.length-1;i>=0;i--) {
+        if(poly[i] !== 0n) {
+            return BigInt(i);
+        }
+    }
+    return -1n;
+}
+
+function polyprint(poly) {
+    var polystr = poly.map((x, index) => x===0n ? "" : (x+" x^{"+index+"}")).filter(x => x!="").reduce((x,y) => x+" + "+y, "").replaceAll(" x^{0}", "").replaceAll("x^{1}", "x").replaceAll(" + 1 x", " + x");
+    return polystr == "" ? "0":polystr.substr(3);
+}
+
+function polymod(a, b, m) {
+    var len_a = Number(degree(a))+1;
+    var len_b = Number(degree(b))+1;
+    if(len_b == 0) {
+        throw "Can't divide by 0"
+    }
+    if(len_a < len_b) {
+        var res = Array(len_a).fill(0n);
+        for(var i=0;i<len_a;i++) {
+            res[i] = a[i];
+        }
+        return res;
+    }
+    
+    if(len_b == 1) {
+        return [a[0]];
+    }
+    
+    var len_q = len_a - len_b + 1;
+    var len_r = len_b;
+    var r = Array(len_r).fill(0n);
+    for(var i=0;i<len_r-1;i++) {
+        r[(1+i)%len_r] = a[len_a - 1 - i];
+    }
+    
+    for(var i=0;i<len_q;i++) {
+        r[i] = a[(len_a - 1)-(i+len_r-1)];
+        if(r[i+1] > 0n) {
+            var q = mod(r[i+1] * b[len_b-1] ,m);
+            for(var j=1;j<len_b;j++) {
+                r[(j+i+1)%len_r] = mod(r[(j+i+1)%len_r] - mod(q * b[len_b-1-j],m), m);
+            }
+        }
+    }
+    res = (r.slice(len_q+1, len_r).concat(r.slice(0, len_q))).reverse();
+    while (res.indexOf(0) === 0n) { // remove leading 0s
+        res.shift()
+    }
+    return res;
+}
+
+
+var globalQ = 47n; //3329n; //17n; // Prime, Modulo
+var globalN = 4; // maximum degree of polynomials
+var globalF = Array(globalN+1).fill(0n); //[1n, 0n, 0n, 0n, 1n]; // Modulo Poly
+globalF[0] = 1n;
+globalF[globalN] = 1n;
+var globalK = 2; // amount of polynomials per vector
+
+var globalEta = 2;
+
+
+function sampleRandom(q) {
+    var eta = globalEta;
+    var input_bytes = new Uint8Array(globalN/4*eta);
+    var output = [];
+    crypto.getRandomValues(input_bytes);
+    for(var i=0;i<globalN;i++) {
+        var a = 0n;
+        var b = 0n;
+        for(var j=0;j<eta;j++) {
+            var ai = 2*i*eta + j;
+            var bi = 2*i*eta + eta + j;
+            a += BigInt((input_bytes[Math.floor(ai/8)] >> (ai%8))&1);
+            b += BigInt((input_bytes[Math.floor(bi/8)] >> (bi%8))&1);
+        }
+        output.push(mod(a-b, q));
+    }
+    return output;
+}
+
+function sampleRandomVector(q) {
+    var out=[];
+    for(var i=0;i<globalK;i++) {
+        out.push(sampleRandom(q));
+    }
+    return out;
+}
+
+function sampleUniformMatrix(q) {
+    var mat = [];
+    for(var i=0;i<globalK;i++) {
+        var row = [];
+        for(var j=0;j<globalK;j++) {
+            var input_bytes = new Uint32Array(globalN);
+            crypto.getRandomValues(input_bytes);
+            var vector = [];
+            for(var x=0;x<globalN;x++) {
+                vector.push(mod(BigInt(input_bytes[x]), q));
+            }
+            row.push(vector);
+        }
+        mat.push(row);
+    }
+    return mat;
+}
+
+function genSecretKey(q) {
+    var sec = sampleRandomVector(q); //[[0n, 1n, 16n, 16n], [0n, 16n, 0n, 16n]];
+    return sec;
+}
+function genPublicKey(s, f, q) {
+    var A = sampleUniformMatrix(q);  // [[[11n, 16n, 16n, 6n], [3n, 6n, 4n, 9n]], [[1n, 10n, 3n, 5n],[15n, 9n, 1n, 6n]]];
+    var e = sampleRandomVector(q); // [[0n, 0n, 1n, 0n], [0n, 16n, 1n, 0n]];
+    var t = [polymod(polyadd(polyadd(polymul(A[0][0], s[0], q), polymul(A[0][1], s[1],q),q), e[0] ,q), f, q),
+             polymod(polyadd(polyadd(polymul(A[1][0], s[0], q), polymul(A[1][1], s[1],q),q), e[1] ,q), f, q)];
+    return [A, e, t];
+}
+
+function encrypt(v, A, t, f, q) {
+    var r = sampleRandomVector(q); // [[0n, 0n, 1n, 16n], [16n, 0n, 1n, 1n]];
+    var e1 = sampleRandomVector(q); // [[0n, 1n, 1n, 0n], [0n, 0n, 1n, 0n]];
+    var e2 = sampleRandom(q); // [0n, 0n, 16n, 16n];
+    
+    var bits = BigInt(degree(f));
+    var m = [];
+    for(var i=0n;i<bits;i++) {
+        m.push(v%2n === 1n?BigInt(Math.round(Number(q)/2)):0n);
+        v = v / 2n;
+    }
+    
+    var u = [polymod(polyadd(polyadd(polymul(A[0][0], r[0], q), polymul(A[1][0], r[1],q),q), e1[0] ,q), f, q),
+             polymod(polyadd(polyadd(polymul(A[0][1], r[0], q), polymul(A[1][1], r[1],q),q), e1[1] ,q), f, q)];
+             
+
+    var v = polymod(polyadd(polyadd(polyadd(polymul(t[0],r[0],q),polymul(t[1],r[1],q),q),m,q),e2,q) ,f, q);
+    
+    return [r, e1, e2, m, u, v];
+}
+
+function decrypt(u, v, s, f, q) {
+    var mn = polymod(polysub(v, polyadd(polymul(s[0], u[0],q), polymul(s[1], u[1],q), q),q) ,f, q);
+    
+    const hq = BigInt(Math.round(Number(q)/2));
+    
+    var bits = BigInt(degree(f));
+    
+    var dv = 0n;
+    for(var i=0;i<bits;i++) {
+        dv = dv * 2n;
+        if(abs(mn[mn.length-1-i] - hq)*2n < hq) {
+            dv = dv + 1n;
+        }
+    }
+    
+    return [mn, dv];
+}
+
+
+// https://github.com/pq-crystals/security-estimates/tree/master
+// Code to calculate error chance
+
+var fac_mem = [];
+function fac(x) {
+    if (x === 0 || x === 1) {
+        return 1;
+    }
+    if (fac_mem[x] > 0) {
+        return fac_mem[x];
+    }
+    
+    fac_mem[x] = fac(x-1) * x;
+    return fac_mem[x];
+}
+
+function binomial(x, y) {
+    if(x-y < 0 || x < 0 || y < 0) { return 0; }
+    var fy = fac(y);
+    var fxy = fac(x-y);
+    var fx = fac(x);
+    if(fy === 0 || fxy === 0) {
+        return 0;
+    }
+    return fx/fy/fxy;
+}
+
+function centered_binomial_pdf(k, x) {
+    return binomial(2*k, x+k) / (1<<(2*k));
+}
+
+function build_centered_binomial_law(k) {
+    var D = {};
+    for(var i=-k; i<k+1; i++) {
+        D[i] = centered_binomial_pdf(k, i);
+    }
+    return D;
+}
+
+function law_convolution(A, B) {
+    var C = {};
+    
+    for (const [keyA, valueA] of Object.entries(A)) {
+        for (const [keyB, valueB] of Object.entries(B)) {
+            var c = Number(keyA) + Number(keyB);
+            C[c] = (C[c]??0) + valueA * valueB;
+        }
+    }
+    return C;
+}
+
+function law_product(A, B) {
+    var C = {};
+    
+    for (const [keyA, valueA] of Object.entries(A)) {
+        for (const [keyB, valueB] of Object.entries(B)) {
+            var c = Number(keyA) * Number(keyB);
+            C[c] = (C[c]??0) + valueA * valueB;
+        }
+    }
+    return C;
+}
+
+function iter_law_convolution(A, i) {
+    var D = {"0": 1.0};
+    var i_bin = (i >>> 0).toString(2);
+    for(var j=0;j<i_bin.length;j++) {
+        D = law_convolution(D, D);
+        D = clean_dist(D);
+        if(i_bin[j] == "1") {
+            D = law_convolution(D, A);
+            D = clean_dist(D);
+        }
+    }
+    return D;
+}
+
+function clean_dist(A) {
+    var B = {};
+    for (const [x, y] of Object.entries(A)) {
+        if(y > 2**(-300)) {
+            B[Number(x)] = y;
+        }
+    }
+    return B;
+}
+
+function p2_cyclotomic_final_error_distribution() {
+    var chis = build_centered_binomial_law(globalEta);
+    var chie = build_centered_binomial_law(globalEta);
+    var chie_pk = build_centered_binomial_law(globalEta);
+    
+    var B1 = law_product(chie_pk, chis);
+    var B2 = law_product(chis, chie);
+    
+    C1 = iter_law_convolution(B1, globalK * globalN); 
+    C2 = iter_law_convolution(B2, globalK * globalN);
+
+    var C=law_convolution(C1, C2);
+    var D = law_convolution(C, chie);
+    return D;
+}
+
+function tail_probability(D, t) {
+    var s = 0;
+    var ma = 0;
+    for (const [x, y] of Object.entries(D)) {
+        if(Number(x) > ma) {
+            ma = Number(x);
+        }
+    }
+    if(t >= ma) { return 0; }
+    for(var i=ma-1;i>=Math.ceil(t);i--) {
+        s = s + (D[i] ?? 0) + (D[-i] ?? 0);
+    }
+    return s;
+}
+
+function p2_cyclotomic_error_probability(q) {
+    var F = p2_cyclotomic_final_error_distribution();
+    proba = tail_probability(F, Number(q)/4);
+    return globalN*proba;
+}
+
+const isPrime = num => {
+    for(let i = 2, s = Math.sqrt(num); i <= s; i++) {
+        if(num % i === 0) return false;
+    }
+    return num > 1;
+}
+
+
+function process() {
+
+    var readX =  BigInt(document.getElementById("x").value);
+    var readQ =  Number(document.getElementById("q").value);
+    
+    
+    if(q < 2 || !isPrime(readQ)) {
+    
+        const div = document.getElementById("contentHere");
+        div.innerHTML = "";
+        div.appendChild(document.createTextNode("q needs to be prime"));
+        return;
+    }
+   
+    //var q = globalQ;
+    var q = BigInt(readQ);
+    
+    var f = globalF;
+    var s = genSecretKey(q);
+    var [A, e, t] = genPublicKey(s, f, q);
+    var [r, e1, e2, m, u, v] = encrypt(readX, A, t, f, q);
+    var [mn, dv] = decrypt(u, v, s, f, q);
+    
+    var noise = polymod(polysub(mn, m, q), f, q);
+    
+    const div = document.getElementById("contentHere");
+    div.innerHTML = "";
+    
+    
+    div.appendChild(document.createTextNode("$$ n = "+globalN+", k = "+globalK+", q = "+q+" $$"));
+    
+    div.appendChild(document.createTextNode("$$ s = ("+polyprint(s[0])+", "+polyprint(s[1])+")"+"$$"));
+    div.appendChild(document.createTextNode("$$ \\textbf{A} = \\begin{bmatrix} "+polyprint(A[0][0])+" & "+polyprint(A[0][1])+" \\\\ "+polyprint(A[1][0])+" & "+polyprint(A[1][1])+" \\end{bmatrix} $$"));
+    div.appendChild(document.createTextNode("$$ e = ("+polyprint(e[0])+", "+polyprint(e[1])+")"+"$$"));
+    div.appendChild(document.createTextNode("$$ t = \\textbf{A}  s + e = ("+polyprint(t[0])+", "+polyprint(t[1])+")"+"$$"));
+    
+    
+    div.appendChild(document.createTextNode("$$ \\text{Encryption:} $$"));
+    div.appendChild(document.createTextNode("$$ r = ("+polyprint(r[0])+", "+polyprint(r[1])+")"+"$$"));
+    div.appendChild(document.createTextNode("$$ e_1 = ("+polyprint(e1[0])+", "+polyprint(e1[1])+")"+"$$"));
+    div.appendChild(document.createTextNode("$$ e_2 = "+polyprint(e2)+"$$"));
+    div.appendChild(document.createTextNode("$$ m = encode(x) = "+polyprint(m)+"$$"));
+    div.appendChild(document.createTextNode("$$ u = \\textbf{A} ^T r + e_1 = ("+polyprint(u[0])+", "+polyprint(u[1])+")"+"$$"));
+    div.appendChild(document.createTextNode("$$ v = t^T r + e_2 + m = "+polyprint(v)+"$$"));
+    div.appendChild(document.createElement("br"));
+
+    div.appendChild(document.createTextNode("$$ \\text{Decryption:} $$"));
+    div.appendChild(document.createTextNode("$$ m_{noisy} = v - s^T u = e^T r + e_2 + m - s^T e_1 = "+polyprint(mn)+"$$"));
+    div.appendChild(document.createTextNode("$$ noise = e^T r + e_2 - s^T e_1 = "+polyprint(noise)+"$$"));
+    div.appendChild(document.createTextNode("$$ v_{dec} = decode(m_{noisy}) = "+dv+"$$"));
+    div.appendChild(document.createTextNode("$$ \\delta \\text{ (decode error chance)} = "+p2_cyclotomic_error_probability(q)*100+" \\% $$"));
+
+
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+}
+</script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="kyber.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="mlwe.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="kyber.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="mlwe.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="src/darkmodefix.js"></script>
+
+
+    </div>
+    </body>
+</html>
